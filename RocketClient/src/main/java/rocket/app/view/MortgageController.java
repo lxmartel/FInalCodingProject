@@ -1,5 +1,9 @@
 package rocket.app.view;
 
+import java.awt.Label;
+
+import javax.swing.ComboBoxEditor;
+
 import eNums.eAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +17,13 @@ import rocketData.LoanRequest;
 
 public class MortgageController {
 
-	@FXML TextField txtCreditScore;
 	@FXML TextField txtMortgageAmt;
+	@FXML Label txtPayment;
+	@FXML TextField txtIncome;
+	@FXML TextField txtExpense;
+	@FXML TextField txtDWPM;
+	@FXML TextField TxtTerm;
+	@FXML ComboBoxEditor cbmCombo;
 	
 	private TextField txtNew;
 	
@@ -42,7 +51,8 @@ public class MortgageController {
 	
 	public void HandleLoanRequestDetails(LoanRequest lRequest)
 	{
-		//	TODO - RocketClient.HandleLoanRequestDetails
+		double roundoff = Math.round(Math.abs(lRequest.getdPayment())*100)/100.0;
+		txtMortgageAmt.setText("Amout: " + roundoff);
 		//			lRequest is an instance of LoanRequest.
 		//			after it's returned back from the server, the payment (dPayment)
 		//			should be calculated.
